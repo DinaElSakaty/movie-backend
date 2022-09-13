@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-deployment
+  labels:
+    app: movie-label
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: movie-label
+      version: 01
+  template:
+    metadata:
+      labels:
+        app: movie-label
+    spec:
+      containers:
+        -name: movie-api
+        image: nginx:1.14.2
+        ports:
+          - containerPort: 80
+
